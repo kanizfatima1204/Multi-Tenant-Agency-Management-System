@@ -1,0 +1,43 @@
+.demo-hint {
+  display: grid;
+  gap: 8px;
+}
+
+.demo-account {
+  align-items: center;
+  background: #fff;
+  border: 1px solid #e2e6ee;
+  border-radius: 8px;
+  color: #445066;
+  cursor: pointer;
+  display: flex;
+  font: inherit;
+  justify-content: space-between;
+  padding: 8px 9px;
+  text-align: left;
+}
+
+.demo-account:hover,
+.demo-account.selected {
+  background: #f1efff;
+  border-color: #8576e4;
+}
+
+.demo-account b,
+.demo-account small {
+  display: block;
+}
+
+.demo-account b {
+  font-size: 10px;
+}
+
+.demo-account small,
+.demo-account code {
+  color: #7c8799;
+  font-size: 9px;
+}
+
+.demo-account code {
+  margin-left: 8px;
+}

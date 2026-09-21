@@ -1,0 +1,6 @@
+<script setup>
+import Layout from '../../Components/Layout.vue'; import Icon from '../../Components/Icon.vue'; import {Link} from '@inertiajs/vue3'
+defineProps({projects:Array})
+const tone=s=>({active:'green',on_hold:'amber',completed:'blue'}[s]||'gray')
+</script>
+<template><Layout><div class="page-heading"><div><span class="eyebrow">PROJECT HUB</span><h1>Projects</h1><p>Explore the projects available inside your workspace.</p></div><Link v-if="$page.props.auth.user.role!=='client'" href="/projects/create" class="primary-btn"><Icon name="plus" :size="17"/> New project</Link></div><div class="project-grid"><Link v-for="p in projects" :key="p.id" :href="`/projects/${p.id}`" class="project-card"><div class="project-card-top"><div class="project-icon"><Icon name="folder"/></div><span :class="`status ${tone(p.status)}`">{{p.status.replace('_',' ')}}</span></div><h2>{{p.name}}</h2><p>{{p.description || 'No project description.'}}</p><div class="project-card-foot"><span>{{p.tasks_count}} tasks</span><span>{{p.updates_count}} updates</span><span>{{p.due_date || 'No due date'}}</span></div></Link><div v-if="!projects.length" class="panel empty-state">No projects are available in this workspace.</div></div></Layout></template>
