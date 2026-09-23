@@ -11,8 +11,11 @@ mkdir -p bootstrap/cache
 # Create SQLite database file if it doesn't exist
 touch database/database.sqlite
 
-# Generate app key if not set
-php artisan key:generate --no-interaction --force
+# APP_KEY must be provided as a persistent deployment environment variable.
+if [[ -z "${APP_KEY:-}" ]]; then
+  echo "APP_KEY must be set in the deployment environment." >&2
+  exit 1
+fi
 
 # Run migrations
 php artisan migrate --force --no-interaction
